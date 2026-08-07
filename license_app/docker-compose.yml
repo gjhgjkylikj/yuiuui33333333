@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  flutter-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: license-app:latest
+    container_name: license_app_builder
+    volumes:
+      - ./build:/app/build
+      - ./lib:/app/lib
+      - ./android:/app/android
+      - ./pubspec.yaml:/app/pubspec.yaml
+    environment:
+      - FLUTTER_HOME=/root/flutter
+      - PATH=/root/flutter/bin:/root/flutter/bin/cache/dart-sdk/bin:$PATH
+    command: flutter build apk --release
