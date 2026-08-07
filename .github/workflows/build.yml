@@ -26,11 +26,17 @@ jobs:
           flutter-version: '3.22.0'
           channel: 'stable'
 
+      - name: Flutter doctor
+        run: flutter doctor -v
+
+      - name: Clean previous build cache
+        run: flutter clean
+
       - name: Install dependencies
         run: flutter pub get
 
       - name: Build release APK
-        run: flutter build apk --release
+        run: flutter build apk --release --verbose
 
       - name: Rename output artifact
         run: |
